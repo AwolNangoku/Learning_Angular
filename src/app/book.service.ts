@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Book } from './books/book';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
 
-  constructor() { }
-
-  getBooks(): Book[] {
-    return [
+  books: Book[] = [
     new Book("Kings Win", "Nceile", 2018),
     new Book("What Now", "Jones Mills", 2012),
     new Book("LOL", "Trevor Noah", 2017),
@@ -19,5 +17,10 @@ export class BookService {
     new Book("Reggae Musice Culture", "Bon Marley", 1978),
     new Book("Space technology", "Elon Musk", 2015),
     ]
+
+  constructor() { }
+
+  getBooks(): Observable<Book[]> {
+    return of(this.books)
   }
 }
