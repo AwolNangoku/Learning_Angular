@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Book } from './books/book';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
 
+  baseURL: String = `http://api.openweathermap.org/data/2.5/weather`;
   books: Book[] = [
     new Book("Kings Win", "Nceile", 2018),
     new Book("What Now", "Jones Mills", 2012),
@@ -18,9 +20,13 @@ export class BookService {
     new Book("Space technology", "Elon Musk", 2015),
     ]
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getBooks(): Observable<Book[]> {
     return of(this.books)
+  }
+
+  getCityWeather(cityName: String): Observable<any> {
+    return this.http.get(this.baseURL + `?q=${cityName}&APPID=7b1a8c03a91f5666e26dc0fa9e3b519d`);
   }
 }
