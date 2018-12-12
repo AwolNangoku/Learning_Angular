@@ -8,9 +8,17 @@
     </li>
   </ul>
 
-  <h1>Cape Town's Weather as follows</h1>
+  <h1>Your city's Weather as follows</h1>
 
   <div>
+    <form>
+      <div class="form-group">
+        <label>Enter City: <input class="form-field" type="text" id="city" name="city" placeholder="Enter city name" #cityName/> </label>
+      </div>
+      <div class="form-group">
+        <input class="btn-primary" type="button" value="Find Weather" (click)="printWeather(cityName.value)" />
+      </div>
+    </form>
     {{weather}}
   </div>
 </div>

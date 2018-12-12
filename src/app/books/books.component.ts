@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../book.service';
 import { Book } from './book';
-import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-books',
@@ -16,14 +15,13 @@ export class BooksComponent implements OnInit {
 
   ngOnInit() {
     this.getBooks();
-    this.printWeather('Cape Town')
   }
 
   getBooks(): void {
     this.booksService.getBooks().subscribe(books => this.books = books);
   }
 
-  printWeather(city: String): void {
-    this.booksService.getCityWeather(city).subscribe( weather => this.weather = JSON.stringify(weather));
+    printWeather(city: String): void {
+      this.booksService.getCityWeather(city).subscribe( weather => this.weather = JSON.stringify(weather));
   }
 }
